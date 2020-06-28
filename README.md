@@ -1,4 +1,4 @@
-# dropdown
+# react-redux-boilerplate
 
 Steps to run code
 
