@@ -1,0 +1,43 @@
+{
+  "name": "react-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "homepage": "https://abhishekthakurak.github.io/react-redux-boilerplate/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "yarn && node --es-module-specifier-resolution=node --experimental-modules ./scripts/start.js",
+    "build": "NODE_ENV='production' node --es-module-specifier-resolution=node --experimental-modules ./scripts/build.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "author": "abhishekthakurak",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "@emotion/core": "10.0.27",
+    "core-js": "^3.4.4",
+    "file-loader": "^5.1.0",
+    "html-webpack-plugin": "^4.0.3",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.41.6",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-dev-server": "^3.10.3",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
+}
