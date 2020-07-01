@@ -18,11 +18,9 @@ const defaultLayout = [{
     'seats': [{'id': 1, 'key': 'A1', 'booked': true}, {'id': 2, 'key': 'A2', 'booked': true}, {
       'id': 3,
       'key': 'A3',
-      'booked': true
     }, {'id': 4, 'key': 'A4', 'booked': true}, {'id': 5, 'key': 'A5', 'booked': true}, {
       'id': 6,
       'key': 'A6',
-      'booked': true
     }, {'id': 7, 'key': 'A7', 'booked': true}, {'id': 8, 'key': 'A8', 'booked': true}, {
       'id': 9,
       'key': 'A9',
@@ -228,7 +226,6 @@ function Hall ({numSeatsRequired = 5, layout = defaultLayout, gridSize: [rows, c
     const seatsToRight = findSeatsToRight(newSeat, numSeatsRequiredOnRight)
 
     let seatsToKeep = numSeatsRequiredOnRight - seatsToRight.length
-    console.log(numSeatsRequiredOnRight, seatsToRight.length)
 
     if (firstSeat.type !== newSeat.type) {
       seatsToKeep = 0
@@ -236,9 +233,12 @@ function Hall ({numSeatsRequired = 5, layout = defaultLayout, gridSize: [rows, c
     let seatsToRemove = selectedSeats.length - seatsToKeep >= 0 ? selectedSeats.length - seatsToKeep : 0
     const oldSeatsToKeep = selectedSeats.filter((key, index) => index >= seatsToRemove)
     const newSeats = [newSeat.key, ...seatsToRight]
-    console.log(seatsToRight, key, newSeats, oldSeatsToKeep, numSeatsRequiredOnRight, seatsToRemove)
     setSelected([...oldSeatsToKeep, ...newSeats])
   }
+  const totalPrice = selectedSeats.reduce((total, key) => {
+    total += seatsData[key].price
+    return total
+  }, 0)
   return (
     <div css={containerStyle(columns)}>
       {layout.map(({type, price, rows}) => {
@@ -267,6 +267,7 @@ function Hall ({numSeatsRequired = 5, layout = defaultLayout, gridSize: [rows, c
           </Fragment>
         )
       })}
+      {totalPrice > 0 && <div>Total Price = Rs.{totalPrice}</div>}
     </div>
   )
 }
