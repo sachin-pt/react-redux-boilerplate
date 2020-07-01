@@ -233,7 +233,7 @@ function Hall ({numSeatsRequired = 5, layout = defaultLayout, gridSize: [rows, c
     if (firstSeat.type !== newSeat.type) {
       seatsToKeep = 0
     }
-    let seatsToRemove = selectedSeats.length - seatsToKeep >= 0 ? 0 : selectedSeats.length - seatsToKeep
+    let seatsToRemove = selectedSeats.length - seatsToKeep >= 0 ? selectedSeats.length - seatsToKeep : 0
     const oldSeatsToKeep = selectedSeats.filter((key, index) => index >= seatsToRemove)
     const newSeats = [newSeat.key, ...seatsToRight]
     console.log(seatsToRight, key, newSeats, oldSeatsToKeep, numSeatsRequiredOnRight, seatsToRemove)
