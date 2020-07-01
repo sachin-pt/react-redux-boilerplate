@@ -5,7 +5,7 @@ import { classStyle, colStyle, containerStyle, rowStyle } from './style'
 const mapData = mapSeatsData => mapSeatsData.reduce((res, {type, rows, price}) => {
   rows.map(({key, seats}) => {
     seats.map(seat => {
-      res[seat.key] = {...seat, type, rowKey: key, price}
+      res[seat.key] = {...seat, type, rowKey: key, price: seat.price || price, defaultPrice: price}
     })
   })
   return res
@@ -15,9 +15,10 @@ const defaultLayout = [{
   'price': 236,
   'rows': [{
     'key': 'A',
-    'seats': [{'id': 1, 'key': 'A1', 'booked': true}, {'id': 2, 'key': 'A2', 'booked': true}, {
+    'seats': [{'id': 1, 'key': 'A1', 'booked': true, price: 456}, {'id': 2, 'key': 'A2', 'booked': true}, {
       'id': 3,
       'key': 'A3',
+      price: 456
     }, {'id': 4, 'key': 'A4', 'booked': true}, {'id': 5, 'key': 'A5', 'booked': true}, {
       'id': 6,
       'key': 'A6',
@@ -253,8 +254,9 @@ function Hall ({numSeatsRequired = 5, layout = defaultLayout, gridSize: [rows, c
                     let content = ''
                     const data = seatsData[seatKey]
                     if (data) {
+                      const priceDiff = data.defaultPrice !== data.price
                       content = (
-                        <div css={seatStyle(selectedSeats.indexOf(seatKey) >= 0, data.booked)}
+                        <div title={`This seat has special price: Rs.${data.price}`} css={seatStyle(selectedSeats.indexOf(seatKey) >= 0, data.booked, priceDiff)}
                              onClick={() => !data.booked && onChange(seatKey)}>{colKey}</div>
                       )
                     }

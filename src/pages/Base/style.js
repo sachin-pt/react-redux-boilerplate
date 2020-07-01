@@ -1,5 +1,5 @@
 import {css} from '@emotion/core'
-export const seatStyle = (selected, booked) => [css`
+export const seatStyle = (selected, booked, priceDiff) => [css`
   height: 20px;
   width: 20px;
   line-height: 20px;
@@ -15,7 +15,10 @@ export const seatStyle = (selected, booked) => [css`
 `, booked && css`
   background: #e6e6e6;
   cursor: not-allowed;
-  color: white;`]
+  color: white;`, priceDiff && css`
+  border-color: red;
+  color: red;
+`]
 
 export const colStyle = css`
   display: inline-block;
